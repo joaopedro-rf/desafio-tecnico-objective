@@ -1,8 +1,8 @@
-CREATE TABLE pagamento_tipo(
+CREATE TABLE pagamento_tipos(
     id VARCHAR(3) PRIMARY KEY
 );
 
-INSERT INTO pagamento_tipo (id) values('P'),('C'),('D');
+INSERT INTO pagamento_tipos (id) values('P'),('C'),('D');
 
 CREATE TABLE contas(
     saldo DECIMAL(18, 2) NOT NULL,
