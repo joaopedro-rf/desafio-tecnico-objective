@@ -12,9 +12,10 @@ CREATE TABLE contas(
 
 CREATE TABLE transacoes(
     id BIGSERIAL PRIMARY KEY,
-    contas_numero_conta BIGINT NOT NULL,
+    numero_conta BIGINT NOT NULL,
     valor DECIMAL(18,2) NOT NULL,
     forma_pagamento VARCHAR(3) NOT NULL,
+    taxa DECIMAL(18,2) NOT NULL,
     FOREIGN KEY (forma_pagamento) REFERENCES pagamento_tipo(id),
     FOREIGN KEY (contas_numero_conta) REFERENCES contas(numero_conta)
 );
