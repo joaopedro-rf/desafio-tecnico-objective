@@ -16,6 +16,6 @@ CREATE TABLE transacoes(
     valor DECIMAL(18,2) NOT NULL,
     forma_pagamento VARCHAR(3) NOT NULL,
     taxa DECIMAL(18,2) NOT NULL,
-    FOREIGN KEY (forma_pagamento) REFERENCES pagamento_tipo(id),
-    FOREIGN KEY (contas_numero_conta) REFERENCES contas(numero_conta)
+    FOREIGN KEY (forma_pagamento) REFERENCES pagamento_tipos(id),
+    FOREIGN KEY (numero_conta) REFERENCES contas(numero_conta)
 );
