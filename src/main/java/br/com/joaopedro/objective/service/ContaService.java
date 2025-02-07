@@ -2,6 +2,7 @@ package br.com.joaopedro.objective.service;
 
 import br.com.joaopedro.objective.dto.ContaRequestDTO;
 import br.com.joaopedro.objective.dto.ContaResponseDTO;
+import br.com.joaopedro.objective.exception.InvalidAccountException;
 import br.com.joaopedro.objective.exception.UserNotFoundException;
 import br.com.joaopedro.objective.mapper.ContaMapper;
 import br.com.joaopedro.objective.model.Conta;
@@ -22,7 +23,7 @@ public class ContaService {
 
     public ContaResponseDTO criarConta(ContaRequestDTO contaRequestDTO){
         if (contaRepository.existsById(contaRequestDTO.numeroConta())) {
-            throw new IllegalArgumentException("Account already exists");
+            throw new InvalidAccountException("Conta já existe");
         }
         Conta conta = new Conta();
         conta.setNumeroConta(contaRequestDTO.numeroConta());
