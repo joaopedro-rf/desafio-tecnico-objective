@@ -32,7 +32,7 @@ public class Transacao {
                 ", valor=" + valor +
                 ", taxa=" + taxa +
                 ", conta=" + conta +
-                ", formaPagamento=" + formaPagamento +
+                ", formaPagamento=" + forma_pagamento +
                 '}';
     }
 
@@ -41,12 +41,12 @@ public class Transacao {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Transacao transacao = (Transacao) o;
-        return Objects.equals(id, transacao.id) && Objects.equals(valor, transacao.valor) && Objects.equals(taxa, transacao.taxa) && Objects.equals(conta, transacao.conta) && formaPagamento == transacao.formaPagamento;
+        return Objects.equals(id, transacao.id) && Objects.equals(valor, transacao.valor) && Objects.equals(taxa, transacao.taxa) && Objects.equals(conta, transacao.conta) && forma_pagamento == transacao.forma_pagamento;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, valor, taxa, conta, formaPagamento);
+        return Objects.hash(id, valor, taxa, conta, forma_pagamento);
     }
 
     public void setId(Long id) {
@@ -77,20 +77,20 @@ public class Transacao {
         this.conta = conta;
     }
 
-    public PagamentoTipo getFormaPagamento() {
-        return formaPagamento;
+    public PagamentoTipo getForma_pagamento() {
+        return forma_pagamento;
     }
 
-    public void setFormaPagamento(PagamentoTipo formaPagamento) {
-        this.formaPagamento = formaPagamento;
+    public void setForma_pagamento(PagamentoTipo forma_pagamento) {
+        this.forma_pagamento = forma_pagamento;
     }
 
-    public Transacao(Long id, BigDecimal valor, BigDecimal taxa, Conta conta, PagamentoTipo formaPagamento) {
+    public Transacao(Long id, BigDecimal valor, BigDecimal taxa, Conta conta, PagamentoTipo forma_pagamento) {
         this.id = id;
         this.valor = valor;
         this.taxa = taxa;
         this.conta = conta;
-        this.formaPagamento = formaPagamento;
+        this.forma_pagamento = forma_pagamento;
     }
 
     public static TransacaoBuilder builder() {
@@ -101,7 +101,7 @@ public class Transacao {
         private BigDecimal valor;
         private BigDecimal taxa;
         private Conta conta;
-        private PagamentoTipo formaPagamento;
+        private PagamentoTipo forma_pagamento;
 
         public TransacaoBuilder valor(BigDecimal valor) {
             this.valor = valor;
@@ -119,12 +119,12 @@ public class Transacao {
         }
 
         public TransacaoBuilder formaPagamento(PagamentoTipo formaPagamento) {
-            this.formaPagamento = formaPagamento;
+            this.forma_pagamento = formaPagamento;
             return this;
         }
 
         public Transacao build() {
-            return new Transacao(null, valor, taxa, conta, formaPagamento);
+            return new Transacao(null, valor, taxa, conta, forma_pagamento);
         }
     }
 
@@ -137,7 +137,7 @@ public class Transacao {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private PagamentoTipo formaPagamento;
+    private PagamentoTipo forma_pagamento;
 
 
 

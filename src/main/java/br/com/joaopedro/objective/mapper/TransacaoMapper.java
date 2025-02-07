@@ -16,13 +16,13 @@ public class TransacaoMapper {
                 .valor(dto.valor())
                 .taxa(taxa)
                 .conta(conta)
-                .formaPagamento(dto.formaPagamento())
+                .formaPagamento(dto.forma_pagamento())
                 .build();
     }
 
     public TransacaoResponseDTO toDTO(Transacao entity){
         return new TransacaoResponseDTO(
-                entity.getConta().getNumeroConta(),
+                entity.getConta().getNumero_conta(),
                 entity.getConta().getSaldo()
         );
     }

@@ -16,17 +16,17 @@ public class Conta {
 
     @Id
     @Min(value = 1, message = "O número da conta deve ser um número positivo")
-    private Long numeroConta;
+    private Long numero_conta;
 
-    public Conta(Long numeroConta, BigDecimal saldo) {
-        this.numeroConta = numeroConta;
+    public Conta(Long numero_conta, BigDecimal saldo) {
+        this.numero_conta = numero_conta;
         this.saldo = saldo;
     }
 
     @Override
     public String toString() {
         return "Conta{" +
-                "numeroConta=" + numeroConta +
+                "numeroConta=" + numero_conta +
                 ", saldo=" + saldo +
                 '}';
     }
@@ -36,20 +36,20 @@ public class Conta {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Conta conta = (Conta) o;
-        return Objects.equals(numeroConta, conta.numeroConta) && Objects.equals(saldo, conta.saldo);
+        return Objects.equals(numero_conta, conta.numero_conta) && Objects.equals(saldo, conta.saldo);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(numeroConta, saldo);
+        return Objects.hash(numero_conta, saldo);
     }
 
-    public Long getNumeroConta() {
-        return numeroConta;
+    public Long getNumero_conta() {
+        return numero_conta;
     }
 
-    public void setNumeroConta(Long numeroConta) {
-        this.numeroConta = numeroConta;
+    public void setNumero_conta(Long numero_conta) {
+        this.numero_conta = numero_conta;
     }
 
     public BigDecimal getSaldo() {

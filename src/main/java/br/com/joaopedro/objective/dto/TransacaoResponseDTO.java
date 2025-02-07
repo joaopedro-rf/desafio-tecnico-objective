@@ -3,7 +3,7 @@ package br.com.joaopedro.objective.dto;
 import java.math.BigDecimal;
 
 public record TransacaoResponseDTO(
-        Long numeroConta,
+        Long numero_conta,
         BigDecimal saldo
 ) {
 }

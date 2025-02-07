@@ -9,10 +9,10 @@ import java.math.BigDecimal;
 
 public record TransacaoRequestDTO(
         @NotNull(message = "A forma de pagamento é obrigatória")
-        PagamentoTipo formaPagamento,
+        PagamentoTipo forma_pagamento,
         @NotNull(message = "O número da conta é obrigatório")
         @Positive(message = "O número da conta deve ser positivo")
-        Long numeroConta,
+        Long numero_conta,
         @NotNull(message = "O valor da transação é obrigatório")
         @DecimalMin(value = "0.01", message = "O valor da transação deve ser maior que zero")
         BigDecimal valor

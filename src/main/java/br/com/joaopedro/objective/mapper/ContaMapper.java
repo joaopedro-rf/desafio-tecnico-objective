@@ -9,14 +9,14 @@ public class ContaMapper {
 
     public Conta toConta(ContaResponseDTO dto){
         return new Conta(
-                dto.numeroConta(),
+                dto.numero_conta(),
                 dto.saldo()
         );
     }
 
     public ContaResponseDTO toDTO(Conta entity) {
         return new ContaResponseDTO(
-                entity.getNumeroConta(),
+                entity.getNumero_conta(),
                 entity.getSaldo()
         );
     }
