@@ -93,6 +93,41 @@ public class Transacao {
         this.formaPagamento = formaPagamento;
     }
 
+    public static TransacaoBuilder builder() {
+        return new TransacaoBuilder();
+    }
+
+    public static class TransacaoBuilder {
+        private BigDecimal valor;
+        private BigDecimal taxa;
+        private Conta conta;
+        private PagamentoTipo formaPagamento;
+
+        public TransacaoBuilder valor(BigDecimal valor) {
+            this.valor = valor;
+            return this;
+        }
+
+        public TransacaoBuilder taxa(BigDecimal taxa) {
+            this.taxa = taxa;
+            return this;
+        }
+
+        public TransacaoBuilder conta(Conta conta) {
+            this.conta = conta;
+            return this;
+        }
+
+        public TransacaoBuilder formaPagamento(PagamentoTipo formaPagamento) {
+            this.formaPagamento = formaPagamento;
+            return this;
+        }
+
+        public Transacao build() {
+            return new Transacao(null, valor, taxa, conta, formaPagamento);
+        }
+    }
+
     @Column(nullable = false)
     private BigDecimal taxa;
 
