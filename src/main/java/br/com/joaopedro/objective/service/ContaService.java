@@ -2,14 +2,12 @@ package br.com.joaopedro.objective.service;
 
 import br.com.joaopedro.objective.dto.ContaRequestDTO;
 import br.com.joaopedro.objective.dto.ContaResponseDTO;
+import br.com.joaopedro.objective.exception.UserNotFoundException;
 import br.com.joaopedro.objective.mapper.ContaMapper;
 import br.com.joaopedro.objective.model.Conta;
 import br.com.joaopedro.objective.repository.ContaRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
 
 @Service
 public class ContaService {
@@ -23,6 +21,9 @@ public class ContaService {
     }
 
     public ContaResponseDTO criarConta(ContaRequestDTO contaRequestDTO){
+        if (contaRepository.existsById(contaRequestDTO.numeroConta())) {
+            throw new IllegalArgumentException("Account already exists");
+        }
         Conta conta = new Conta();
         conta.setNumeroConta(contaRequestDTO.numeroConta());
         conta.setSaldo(contaRequestDTO.saldo());
@@ -36,15 +37,15 @@ public class ContaService {
     public ContaResponseDTO encontrarContaOuThrowException(Long numeroConta) {
         return contaRepository.findById(numeroConta)
                 .map(contaMapper::toDTO)
-                .orElseThrow(() -> new RuntimeException("Conta não encontrada: " + numeroConta));
+                .orElseThrow(() -> new UserNotFoundException("Conta não encontrada: " + numeroConta));
     }
 
     @Transactional
-    public ContaResponseDTO atualizarConta(Conta contaAtualizada) {
+    public void atualizarConta(Conta contaAtualizada) {
         Conta contaExistente = contaRepository.findById(contaAtualizada.getNumeroConta())
-                .orElseThrow(() -> new RuntimeException("Conta não encontrada: " + contaAtualizada.getNumeroConta()));
+                .orElseThrow(() -> new UserNotFoundException("Conta não encontrada: " + contaAtualizada.getNumeroConta()));
 
         contaExistente.setSaldo(contaAtualizada.getSaldo());
-        return contaMapper.toDTO(contaRepository.save(contaExistente));
+        contaMapper.toDTO(contaRepository.save(contaExistente));
     }
 }

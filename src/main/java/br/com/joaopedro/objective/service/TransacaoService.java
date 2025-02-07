@@ -1,8 +1,8 @@
 package br.com.joaopedro.objective.service;
 
-import br.com.joaopedro.objective.dto.ContaResponseDTO;
 import br.com.joaopedro.objective.dto.TransacaoRequestDTO;
 import br.com.joaopedro.objective.dto.TransacaoResponseDTO;
+import br.com.joaopedro.objective.exception.InsufficientBalanceException;
 import br.com.joaopedro.objective.mapper.ContaMapper;
 import br.com.joaopedro.objective.mapper.TransacaoMapper;
 import br.com.joaopedro.objective.model.Conta;
@@ -44,9 +44,7 @@ public class TransacaoService {
 
     private void validarSaldo(Conta conta, BigDecimal valorTotal) {
         if (conta.getSaldo().compareTo(valorTotal) < 0) {
-            throw new RuntimeException(
-                    "Saldo insuficiente para realizar a transação"
-            );
+            throw new InsufficientBalanceException();
         }
     }
 
