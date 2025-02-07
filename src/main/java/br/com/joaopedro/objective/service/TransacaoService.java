@@ -29,9 +29,9 @@ public class TransacaoService {
     }
 
     public TransacaoResponseDTO processarTransacao(TransacaoRequestDTO request){
-        Conta conta = buscarConta(request.numeroConta());
+        Conta conta = buscarConta(request.numero_conta());
 
-        BigDecimal taxa = calculaValorTaxa(request.valor(), request.formaPagamento());
+        BigDecimal taxa = calculaValorTaxa(request.valor(), request.forma_pagamento());
         BigDecimal valorTotal = request.valor().add(taxa);
 
         validarSaldo(conta, valorTotal);

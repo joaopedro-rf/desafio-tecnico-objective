@@ -22,11 +22,11 @@ public class ContaService {
     }
 
     public ContaResponseDTO criarConta(ContaRequestDTO contaRequestDTO){
-        if (contaRepository.existsById(contaRequestDTO.numeroConta())) {
+        if (contaRepository.existsById(contaRequestDTO.numero_conta())) {
             throw new InvalidAccountException("Conta já existe");
         }
         Conta conta = new Conta();
-        conta.setNumeroConta(contaRequestDTO.numeroConta());
+        conta.setNumero_conta(contaRequestDTO.numero_conta());
         conta.setSaldo(contaRequestDTO.saldo());
         return contaMapper.toDTO(contaRepository.save(conta));
     }
@@ -43,8 +43,8 @@ public class ContaService {
 
     @Transactional
     public void atualizarConta(Conta contaAtualizada) {
-        Conta contaExistente = contaRepository.findById(contaAtualizada.getNumeroConta())
-                .orElseThrow(() -> new UserNotFoundException("Conta não encontrada: " + contaAtualizada.getNumeroConta()));
+        Conta contaExistente = contaRepository.findById(contaAtualizada.getNumero_conta())
+                .orElseThrow(() -> new UserNotFoundException("Conta não encontrada: " + contaAtualizada.getNumero_conta()));
 
         contaExistente.setSaldo(contaAtualizada.getSaldo());
         contaMapper.toDTO(contaRepository.save(contaExistente));
