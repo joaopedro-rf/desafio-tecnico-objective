@@ -55,6 +55,14 @@ public class GlobalExceptionHandler {
         );
     }
 
+    @ExceptionHandler(InvalidAccountException.class)
+    public ResponseEntity<ErrorResponseDTO> handleInvalidDocumentException(
+            InvalidAccountException ex,
+            HttpServletRequest request) {
+        return createErrorResponse(ex.getMessage(), HttpStatus.BAD_REQUEST, request);
+    }
+
+
     private ResponseEntity<ErrorResponseDTO> createErrorResponse(
             String message,
             HttpStatus status,
